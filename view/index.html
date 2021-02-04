@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>Легкие данные и основная структура страницы загружены</h1>
+<p>
+    После события загрузки страницы идет AJAX запрос на подгрузку данных
+   в то время когда они только сейчас формируются
+</p>
+%s
+<script src="/js/jquery-1.12.3.min.js"></script>
+<script>
+    $(function() {
+        console.log('page load');
+        $.ajax({
+            url: 'server.php',
+            type: "POST",
+            data: {param:1,params:2},
+            success: function(data){
+                //console.log('success',JSON.stringify(data));
+                //console.log('success',JSON.parse(data));
+                $('select[name="data"]').html('');
+                 $('select[name="data"]').append(data);
+
+            }
+        });
+    });
+</script>
+</body>
+</html>
